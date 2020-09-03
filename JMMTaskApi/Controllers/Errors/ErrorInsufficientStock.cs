@@ -8,7 +8,7 @@ namespace JMMTaskApi.Controllers.Errors
     /// <summary>
     /// This class would be used when user wants to buy or sell more products than there available stock
     /// Default Usage : Create Object of this class and pass it to BadRequest() function;
-    /// E.g : BadRequest(new ErrorInsufficientStock());
+    /// <example> <code> BadRequest(new ErrorInsufficientStock()); </code> </example>
     /// </summary>
     public class ErrorInsufficientStock : IError
     {

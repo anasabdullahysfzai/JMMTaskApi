@@ -8,7 +8,7 @@ namespace JMMTaskApi.Controllers.Errors
     /// <summary>
     ///  This class would be used when user tries to insert a record which already exists in the database
     ///  Default Usage : Create Object of this class and pass it to BadRequest() function;
-    ///  E.g : BadRequest(new ErrorRecordRepeat());
+    /// <example> <code> BadRequest(new ErrorRecordRepeat()); </code></example>
     /// </summary>
     public class ErrorRecordRepeat : IError
     {

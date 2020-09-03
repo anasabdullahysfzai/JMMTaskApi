@@ -8,7 +8,7 @@ namespace JMMTaskApi.Controllers.Errors
     /// <summary>
     ///  This class would be used when user wants to fetch a record which doesnt exist in database
     ///  Default Usage : Create Object of this class and pass it to NotFound() function; 
-    ///  E.g : NotFound(new ErrorRecordDoesntExist());
+    ///  <example> <code> NotFound(new ErrorRecordDoesntExist()); </code> </example>
     /// </summary>
     public class ErrorRecordDoesntExist : IError
     {
