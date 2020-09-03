@@ -40,6 +40,7 @@ namespace JMMTaskApi.Controllers
         /// <returns>Returns all the customers from the database</returns>
         [HttpGet]
         [Route("customers")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<CustomerDTO>>> GetCustomers()
         {
             //Create a array of CustomerDTO Objects with CId , CName , CAddress , CPhone fields
@@ -62,6 +63,8 @@ namespace JMMTaskApi.Controllers
         /// <returns>Returns single customer record of the customer/returns>
         [HttpGet("{c_id}")]
         [Route("customer")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<CustomerDTO>> GetCustomer([FromQuery]int c_id)
         {
             var customer = await _context.Customer.FindAsync(c_id);
@@ -92,6 +95,8 @@ namespace JMMTaskApi.Controllers
         /// <returns>Returns the created customer record</returns>
         [HttpPost]
         [Route("addcustomer")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Customer>> PostCustomer([FromBody]Customer customer)
         {
             //Check if Customer already Exists with exact same properties
@@ -116,6 +121,8 @@ namespace JMMTaskApi.Controllers
         /// <returns>Returns the records of all customers created</returns>
         [HttpPost]
         [Route("addcustomers")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<IList<Customer>>> PostCustomers([FromBody] IList<Customer> customers)
         {
             //Check if Any of the Customer in the list already Exists with exact same properties
@@ -146,6 +153,8 @@ namespace JMMTaskApi.Controllers
         /// <returns>returns CustomerDTO object containing deleted customer details</returns>
         [HttpDelete("{c_id}")]
         [Route("deletecustomer")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<CustomerDTO>> DeleteCustomer([FromQuery]int c_id)
         {
             var customer = await _context.Customer.FindAsync(c_id);

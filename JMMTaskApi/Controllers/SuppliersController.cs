@@ -38,6 +38,7 @@ namespace JMMTaskApi.Controllers
         /// <returns>List of Supplies</returns>
         [HttpGet]
         [Route("suppliers")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<SupplierDTO>>> GetSuppliers()
         {
             var suppliers = from supplier in _context.Supplier
@@ -59,6 +60,8 @@ namespace JMMTaskApi.Controllers
         /// <returns>Supplier Object</returns>
         [HttpGet("{s_id}")]
         [Route("supplier")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<SupplierDTO>> GetSupplier([FromQuery]int s_id)
         {
             var supplier = await _context.Supplier.FindAsync(s_id);
@@ -86,6 +89,8 @@ namespace JMMTaskApi.Controllers
         /// <returns>List of All Added Supplier Objects with IDs</returns>
         [HttpPost]
         [Route("addsuppliers")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<IList<Supplier>>> PostSupplier([FromBody]IList<Supplier> suppliers)
         {
             foreach (Supplier supplier in suppliers)
@@ -111,6 +116,8 @@ namespace JMMTaskApi.Controllers
         /// <returns>returns deleted Supplie Object</returns>
         [HttpDelete("{s_id}")]
         [Route("deletesupplier")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<SupplierDTO>> DeleteSupplier([FromQuery]int s_id)
         {
             var supplier = await _context.Supplier.FindAsync(s_id);

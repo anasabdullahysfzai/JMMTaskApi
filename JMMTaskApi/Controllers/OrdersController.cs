@@ -42,6 +42,9 @@ namespace JMMTaskApi.Controllers
 
         [HttpGet("{s_id}")]
         [Route("ordersbysupplierid")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
         public async Task<ActionResult<IList<OrderSupplierDTO>>> GetOrdersBySupplierId([FromQuery]int s_id)
         {
             var supplierorders = (from supplier in _context.Supplier
@@ -75,6 +78,10 @@ namespace JMMTaskApi.Controllers
                             ).ToList()
                                   }
                                   );
+            if (supplierorders == null)
+            {
+                return NotFound(new ErrorRecordDoesntExist());
+            }
             return await supplierorders.ToListAsync();
         }
         /// <summary>
@@ -85,9 +92,11 @@ namespace JMMTaskApi.Controllers
         /// <returns>Returns all orders against the provided customer id</returns>
         [HttpGet("{c_id}")]
         [Route("ordersbycustomerid")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IList<OrderCustomerDTO>>> GetOrdersByCustomerId([FromQuery]int c_id)
         {
-            var supplierorders = (from customer in _context.Customer
+            var customerorders = (from customer in _context.Customer
                                   join order in _context.Orders
                                   on customer.CId equals order.CId
                                   where customer.CId == c_id
@@ -117,11 +126,11 @@ namespace JMMTaskApi.Controllers
                             ).ToList()
                                   }
                                   ); ;
-            if(supplierorders == null)
+            if(customerorders == null)
             {
                 return NotFound(new ErrorRecordDoesntExist());
             }
-            return await supplierorders.ToListAsync();
+            return await customerorders.ToListAsync();
         }
 
         /// <summary>
@@ -132,6 +141,8 @@ namespace JMMTaskApi.Controllers
         /// <returns>Returns all products against order id</returns>
         [HttpGet("{o_id}")]
         [Route("productsfromorder")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IList<OrderProductsDTO>>> GetProductsFromOrder([FromQuery]int o_id)
         {
             var products = (from order in _context.Orders
@@ -164,6 +175,8 @@ namespace JMMTaskApi.Controllers
         /// <returns>Returns newly created order</returns>
         [HttpPost]
         [Route("createorder")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<JObject>> PostOrders([FromBody]JObject orders)
         {
             if(orders == null)
@@ -269,9 +282,15 @@ namespace JMMTaskApi.Controllers
             //Add total to Returning Object
             orders.Add("OTotal", total);
 
-            return Ok(orders);
+            return Created("",orders);
         }
 
+        /// <summary>
+        ///  Checks If product stock is sufficient to fulfil product quantity
+        /// </summary>
+        /// <param name="p_id">Product Id</param>
+        /// <param name="op_quantity">Product Order Quantity</param>
+        /// <returns>true for sufficient and false for insufficient</returns>
         private bool IsProductStockSufficient(int p_id,int op_quantity)
         {
             Product product  = _context.Product.FirstOrDefault(p => (p.PId == p_id));

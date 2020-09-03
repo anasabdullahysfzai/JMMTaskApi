@@ -40,6 +40,7 @@ namespace JMMTaskApi.Controllers
         /// <returns>returns List of ProductDTO Objects</returns>
         [HttpGet]
         [Route("products")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProducts()
         {
             //Create the Array of ProductDTO Objects with PId , PName , PCode , PStock fields
@@ -63,6 +64,8 @@ namespace JMMTaskApi.Controllers
 
         [HttpGet("{p_id}")]
         [Route("product")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductDTO>> GetProduct([FromQuery] int p_id)
         {
             var product = await _context.Product.FindAsync(p_id);
@@ -93,6 +96,9 @@ namespace JMMTaskApi.Controllers
         /// <returns>returns updated Product Object</returns>
         [HttpPut("{p_id}")]
         [Route("editproduct")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> PutProduct([FromQuery]int p_id, Product product)
         {
             if (p_id != product.PId)
@@ -128,6 +134,8 @@ namespace JMMTaskApi.Controllers
         /// <returns>Return Added Product Object</returns>
         [HttpPost]
         [Route("addproduct")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Product>> PostProduct([FromBody] Product product)
         {
 
@@ -151,6 +159,8 @@ namespace JMMTaskApi.Controllers
         /// <returns>Returns List of Recently added Product Objects with Ids</returns>
         [HttpPost]
         [Route("addproducts")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<IList<Product>>> PostProduct([FromBody] IList<Product> products)
         {
 
@@ -177,6 +187,8 @@ namespace JMMTaskApi.Controllers
         /// <returns>returns Deleted Product Object</returns>
         [HttpDelete("{p_id}")]
         [Route("deleteproduct")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductDTO>> DeleteProduct([FromQuery]int p_id)
         {
             var product = await _context.Product.FindAsync(p_id);
