@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace JMMTaskApi.DTOs
 {
+    /// <summary>
+    ///  Data Transfer Object class used as an object to fullfill Request of Getting Products Against an Order
+    /// </summary>
     public class OrderProductsDTO
     {
         public string PCode { get; set; }

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 
 namespace JMMTaskApi
 {
+    /// <summary>
+    ///  Data Transfer Object class to send supplier related Details in Response
+    /// </summary>
     public partial class SupplierDTO
     {
-        public SupplierDTO()
-        {
-
-        }
 
         public int SId { get; set; }
         public string SName { get; set; }

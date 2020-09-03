@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace JMMTaskApi.DTOs
 {
+    /// <summary>
+    /// Data Transfer Object class to send Product Related Details in Response
+    /// </summary>
     public partial class ProductDTO
     {
         public ProductDTO()

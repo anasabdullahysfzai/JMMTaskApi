@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace JMMTaskApi.DTOs
 {
+    /// <summary>
+    ///  Data Transfer Object class used as an object to fullfill Purchase Invoice Request from Supplier
+    /// </summary>
+
     public class OrderSupplierDTO
     {
         public int OId { get; set; }
