@@ -5,6 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JMMTaskApi
 {
+    /// <summary>
+    ///  Entity Framework Database Model file for OrderProduct Bridge Table
+    /// </summary>
     public partial class OrderProduct
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -5,6 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JMMTaskApi
 {
+    /// <summary>
+    ///  Entity Framework Database Model file for Orders Table
+    /// </summary>
+
     public partial class Orders
     {
         public Orders()

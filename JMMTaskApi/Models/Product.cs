@@ -5,6 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JMMTaskApi
 {
+    /// <summary>
+    ///  Entity Framework Database Model file for Product Table
+    /// </summary>
+
     public partial class Product : ICloneable
     {
         public Product()
