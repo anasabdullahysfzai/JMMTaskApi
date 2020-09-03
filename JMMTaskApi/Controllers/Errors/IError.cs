@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace JMMTaskApi.Controllers.Errors
 {
-    /**
-     * Interface for returning error code and description for api
-     * 
-     * DEFAULT USAGE: Implement this interface in a class and set error code and description according to your need 
-     * **/
 
+    /// <summary>
+    ///  Interface for returning error code and error description for specific api request
+    ///  DEFAULT USAGE: Implement this interface in a class and set error code and description according to your need
+    /// </summary>
+
+    
     interface IError
     {
         public Int32 error_code { get; }

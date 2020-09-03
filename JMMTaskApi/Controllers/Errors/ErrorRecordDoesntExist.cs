@@ -5,21 +5,14 @@ using System.Threading.Tasks;
 
 namespace JMMTaskApi.Controllers.Errors
 {
-
-    
+    /// <summary>
+    ///  This class would be used when user wants to fetch a record which doesnt exist in database
+    ///  Default Usage : Create Object of this class and pass it to NotFound() function; 
+    ///  E.g : NotFound(new ErrorRecordDoesntExist());
+    /// </summary>
     public class ErrorRecordDoesntExist : IError
     {
-        /**
-         * Default Usage : Create Object of this class and pass it to NotFound() function;
-         * E.g : NotFound(new ErrorRecordDoesntExist());
-         * **/
-
-        private Int32 ERR_CODE = 1001;
-        private string ERR_DESC = "The record against the details you provided doesnt exist";
-
-
-        public int error_code => ERR_CODE;
-
-        public string description => ERR_DESC;
+        public int error_code => 1001;
+        public string description => "The record against the details you provided doesnt exist";
     }
 }

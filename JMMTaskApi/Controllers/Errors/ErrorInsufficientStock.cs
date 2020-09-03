@@ -5,34 +5,14 @@ using System.Threading.Tasks;
 
 namespace JMMTaskApi.Controllers.Errors
 {
+    /// <summary>
+    /// This class would be used when user wants to buy or sell more products than there available stock
+    /// Default Usage : Create Object of this class and pass it to BadRequest() function;
+    /// E.g : BadRequest(new ErrorInsufficientStock());
+    /// </summary>
     public class ErrorInsufficientStock : IError
     {
-        /**
-        * Default Usage : Create Object of this class and pass it to BadRequest() function;
-        * E.g : BadRequest(new ErrorInsufficientStock());
-        * **/
-
-        private Int32 ERROR_CODE = 1002;
-        private string ERROR_DESC = "Insufficient Stock to fulfill this request";
-
-        public ErrorInsufficientStock()
-        {
-
-        }
-
-        public Int32 error_code
-        {
-            get
-            {
-                return ERROR_CODE;
-            }
-        }
-        public string description
-        {
-            get
-            {
-                return ERROR_DESC;
-            }
-        }
+        public int error_code => 1002;
+        public string description => "Insufficient Product Stock to fulfill this request";
     }
 }
