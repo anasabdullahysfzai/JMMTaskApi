@@ -37,6 +37,7 @@ namespace JMMTaskApi.Controllers
         /// <summary>
         /// Endpoint to get all the Products in database
         /// </summary>
+        /// <response code="200">Returns Products</response>
         /// <returns>returns List of ProductDTO Objects</returns>
         [HttpGet]
         [Route("products")]
@@ -59,6 +60,8 @@ namespace JMMTaskApi.Controllers
         /// <summary>
         /// Endpoint to get a single product with matching id
         /// </summary>
+        /// <response code="200">Returns a Product</response>
+        /// <response code="404">Product Doesnt Exist</response>
         /// <param name="id">id of the product to fetch</param>
         /// <returns>returns ProductDTO Object</returns>
 
@@ -93,6 +96,9 @@ namespace JMMTaskApi.Controllers
         /// </summary>
         /// <param name="id">id of the Product to update</param>
         /// <param name="product">Product object with updated properties</param>
+        /// <response code="204">Update Successful</response>
+        /// <response code="400">Product Ids Doesnt Match</response>
+        /// <response code="404">Product Doesnt Exist</response>
         /// <returns>returns updated Product Object</returns>
         [HttpPut("{p_id}")]
         [Route("editproduct")]
@@ -131,6 +137,8 @@ namespace JMMTaskApi.Controllers
         /// Endpoint to Add single product to database
         /// </summary>
         /// <param name="product">Product Object to add in database</param>
+        /// <response code="201">Product Added</response>
+        /// <response code="400">Product Already Exist</response>
         /// <returns>Return Added Product Object</returns>
         [HttpPost]
         [Route("addproduct")]
@@ -156,12 +164,14 @@ namespace JMMTaskApi.Controllers
         ///  Endpoint to Add multiple products to database
         /// </summary>
         /// <param name="products">List of Product Objects</param>
+        /// <response code="201">Products Added</response>
+        /// <response code="400">Details of one or some products already exists</response>
         /// <returns>Returns List of Recently added Product Objects with Ids</returns>
         [HttpPost]
         [Route("addproducts")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IList<Product>>> PostProduct([FromBody] IList<Product> products)
+        public async Task<ActionResult<IList<Product>>> PostProductS([FromBody] IList<Product> products)
         {
 
             foreach(Product product in products)
@@ -184,6 +194,8 @@ namespace JMMTaskApi.Controllers
         /// Endpoint to delete Product from database
         /// </summary>
         /// <param name="id">id of the Product</param>
+        /// <response code="200">Product Deleted Successfully</response>
+        /// <response code="404">Product Doesnt Exist</response>
         /// <returns>returns Deleted Product Object</returns>
         [HttpDelete("{p_id}")]
         [Route("deleteproduct")]

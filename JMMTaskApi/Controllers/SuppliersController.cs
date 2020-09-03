@@ -35,6 +35,7 @@ namespace JMMTaskApi.Controllers
         /// <summary>
         ///  Endpoint to get all the suppliers from database
         /// </summary>
+        /// <response code="200">Returns Suppliers</response>
         /// <returns>List of Supplies</returns>
         [HttpGet]
         [Route("suppliers")]
@@ -57,6 +58,8 @@ namespace JMMTaskApi.Controllers
         /// Endpoint to get single supplier object from the database
         /// </summary>
         /// <param name="id">id of supplier to fetch</param>
+        /// <response code="200">Return a Supplier</response>
+        /// <response code="404">Supplier Doesnt Exist</response>
         /// <returns>Supplier Object</returns>
         [HttpGet("{s_id}")]
         [Route("supplier")]
@@ -86,6 +89,8 @@ namespace JMMTaskApi.Controllers
         /// <summary>
         /// Endpoint to add multiple suppliers to database
         /// </summary>
+        /// <response code="201">Suppliers Added Successfully</response>
+        /// <response code="400">Details of one or some suppliers already exists/response>
         /// <returns>List of All Added Supplier Objects with IDs</returns>
         [HttpPost]
         [Route("addsuppliers")]
@@ -113,6 +118,8 @@ namespace JMMTaskApi.Controllers
         /// Endpoint to delete specific supplier by id
         /// </summary>
         /// <param name="id">id of supplier</param>
+        /// <response code="200">Supplier Deleted Successfully</response>
+        /// <response code="404">Supplier Doesnt Exist</response>
         /// <returns>returns deleted Supplie Object</returns>
         [HttpDelete("{s_id}")]
         [Route("deletesupplier")]

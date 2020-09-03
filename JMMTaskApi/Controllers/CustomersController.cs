@@ -37,6 +37,7 @@ namespace JMMTaskApi.Controllers
         /// <summary>
         ///     GetCustomers Method Handles the /v1/api/customers route of the api.
         /// </summary>
+        /// <response code="200">Returns Customers List</response>
         /// <returns>Returns all the customers from the database</returns>
         [HttpGet]
         [Route("customers")]
@@ -59,6 +60,8 @@ namespace JMMTaskApi.Controllers
         ///     GetCustomer Method handles the /v1/api/customer route of the api . This method fetches the record of the customer
         ///     whose id is provided in parameter.
         /// </summary>
+        /// <response code="200">Returns a Customer</response>
+        /// <response code="404">Customer Doesnt Exist</response>
         /// <param name="c_id">id of the customer you want to fetch record of.id is provided by query parameters</param>
         /// <returns>Returns single customer record of the customer/returns>
         [HttpGet("{c_id}")]
@@ -91,6 +94,8 @@ namespace JMMTaskApi.Controllers
         ///  PostCustomer Method handles the /v1/api/addcustomer route of the api . This method adds the new customer to the database. 
         ///
         /// </summary>
+        /// <response code="201">Customer Created</response>
+        /// <response code="400">Customer already exists in database</response>
         /// <param name="customer">object containing the details of the new customer being created.</param>
         /// <returns>Returns the created customer record</returns>
         [HttpPost]
@@ -118,6 +123,8 @@ namespace JMMTaskApi.Controllers
         ///
         /// </summary>
         /// <param name="customers">list of objects containing the details of the new customer being created.</param>
+        /// <response code="201">Customers Created</response>
+        /// <response code="400">Details of one or some customers already exists</response>
         /// <returns>Returns the records of all customers created</returns>
         [HttpPost]
         [Route("addcustomers")]
@@ -150,6 +157,8 @@ namespace JMMTaskApi.Controllers
         /// DeleteCustomer Method handles the /v1/api/deletecustomer route of the api. This method deletes the record of the customer whose id is provided in parameters
         /// </summary>
         /// <param name="id">id of the customer whose record is going to be deleted.id is provided by query parameters</param>
+        /// <response code="200">Customer Deleted Successfully</response>
+        /// <response code="404">Customer not found</response>
         /// <returns>returns CustomerDTO object containing deleted customer details</returns>
         [HttpDelete("{c_id}")]
         [Route("deletecustomer")]

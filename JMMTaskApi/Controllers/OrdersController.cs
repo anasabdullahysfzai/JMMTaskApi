@@ -38,6 +38,8 @@ namespace JMMTaskApi.Controllers
         ///  GetOrderBySupplierId Method handles the /v1/api/ordersbysupplierid route of the api .This method fetches all the purchase orders against provided supplier id
         /// </summary>
         /// <param name="s_id">supplier id of the Supplier</param>
+        /// <response code="200">Returns Supplier Orders</response>
+        /// <response code="404">Supplier Doesnt Exist</response>
         /// <returns>Returns All purchase orders from supplier whose id is provided</returns>
 
         [HttpGet("{s_id}")]
@@ -89,6 +91,8 @@ namespace JMMTaskApi.Controllers
         ///  against provided customer id
         /// </summary>
         /// <param name="c_id">customer id of the customer</param>
+        /// <response code="200">Return Customer Orders</response>
+        /// <response code="404">Return Doesnt Exist</response>
         /// <returns>Returns all orders against the provided customer id</returns>
         [HttpGet("{c_id}")]
         [Route("ordersbycustomerid")]
@@ -138,6 +142,8 @@ namespace JMMTaskApi.Controllers
         ///  whose orde id is provided in the parameters
         /// </summary>
         /// <param name="o_id">order id of the order whose products you want to fetch</param>
+        /// <response code="200">Return Order Products</response>
+        /// <response code="404">Order Doesnt Exist</response>
         /// <returns>Returns all products against order id</returns>
         [HttpGet("{o_id}")]
         [Route("productsfromorder")]
@@ -172,6 +178,8 @@ namespace JMMTaskApi.Controllers
         ///  PostOrders Method handles the /v1/api/createorder route of the api. This method creates the order record in the database.
         /// </summary>
         /// <param name="orders">Order detail provided by the Request Body</param>
+        /// <response code="201">Order Created</response>
+        /// <response code="400">Orders Object is Null / Insufficient Product Stock / A Product Doesn'nt Exist</response>
         /// <returns>Returns newly created order</returns>
         [HttpPost]
         [Route("createorder")]
